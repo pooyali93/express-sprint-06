@@ -1,5 +1,10 @@
 const model = {}; 
 
+model.table = `bookings`;
+model.mutableFields = ['VEHICLE_ID', 'EMP_ID', 'CUST_ID', 'DATEBOOKED'];
+model.idFields = 'BOOKING_ID';
+
+
 model.buildReadQuery = (id, variant) => {
   let table = `(((((bookings LEFT JOIN vehicles ON bookings.VEHICLE_ID = vehicles.VEHICLE_ID) 
       LEFT JOIN customers ON bookings.CUST_ID = customers.CUST_ID) 

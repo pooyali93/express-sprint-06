@@ -16,8 +16,6 @@ const validator = new Validator(schema);
 // Data Accessor
 const accessor = new Accessor(model, database);
 
-
-
 // Controller ----------------------------
 const controller = new Controller(validator, accessor);
 
