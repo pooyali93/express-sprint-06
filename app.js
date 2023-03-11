@@ -4,6 +4,7 @@ import cors from 'cors';
 import bookingsRouter from './routers/bookings-router.js'
 import vehiclesRouter from './routers/vehicles-router.js'
 import usersRouter from './routers/users-router.js'
+import feedbackRouter from './routers/feedbacks-router.js'
 // Configure express app ---------------
 const app = new express();
 
@@ -20,14 +21,12 @@ app.use(function (req, res, next) {
 
 app.use(cors({ origin: '*' }));
 
-
-
-
-
+      
 // Endpoints ---------------------------
 app.use('/api/bookings', bookingsRouter);
 app.use('/api/vehicles', vehiclesRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/feedbacks', feedbackRouter);
 
 
 

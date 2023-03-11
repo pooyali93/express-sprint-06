@@ -5,7 +5,7 @@ import Validator from "../validator/Validator.js";
 import Accessor from "../accessor/Accessor.js";
 import Controller from "../controller/Controller.js";
 import bookingsModel from "../models/bookings-model.js"
-import schema from "../validator/users-schema.js";
+import schema from "../validator/bookings-schema.js";
 
 
 // Model -----------------------------------
@@ -28,7 +28,7 @@ const controller = new Controller(validator, accessor);
 const router = Router();
 
 router.get('/', (req, res) => controller.get(req, res, null));
-router.get('/:id(\\d+)', (req, res) => controller.get(req, res, 'BOOKING_ID'));
+router.get('/:id(\\d+)', (req, res) => controller.get(req, res, "BOOKING_ID"));
 router.get('/salesperson/:id(\\d+)', (req, res) => controller.get(req, res, "EMP_ID"));
 router.get('/customers/:id(\\d+)', (req, res) => controller.get(req, res, "CUST_ID"));
 

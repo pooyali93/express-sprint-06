@@ -9,7 +9,7 @@ class Controller {
     const id = req.params.id;
     const query = req.query;
 
-  console.log(JSON.stringify(req.params.id));
+  
     // Validation-------------- 
     const {isValid, message: validatorMessage} = this.validator.get(id);
 
@@ -26,6 +26,7 @@ class Controller {
   
   post = async (req, res) => {
     const record = req.body;
+    console.log(JSON.stringify(req.body), "HELLO");
     
     // Validate request
     const { isValid, message: validatorMessage } = this.validator.post(record);
@@ -71,3 +72,5 @@ class Controller {
 
 
 export default Controller;
+
+
