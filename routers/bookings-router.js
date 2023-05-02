@@ -7,22 +7,17 @@ import Controller from "../controller/Controller.js";
 import bookingsModel from "../models/bookings-model.js"
 import schema from "../validator/bookings-schema.js";
 
+// Validator--------------------------------
+const validator = new Validator(schema);
 
 // Model -----------------------------------
 const model = new Model(bookingsModel);
 
-// Validator--------------------------------
-const validator = new Validator(schema);
-
 // Data Accessor
 const accessor = new Accessor(model, database);
 
-
-
 // Controller ----------------------------
 const controller = new Controller(validator, accessor);
-
-
 
 // Endpoints ---------------------------
 const router = Router();

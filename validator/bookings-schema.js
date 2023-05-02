@@ -10,7 +10,7 @@ schema.recordSchema = joi.object({
   CUST_ID: joi.number().integer(),
   DATEBOOKED: joi.date()
 
-}).required();
+}).required().unknown(true);
 
 
 

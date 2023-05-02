@@ -11,9 +11,8 @@ schema.recordSchema = joi.object({
   MESSAGE: joi.string().min(10),
   DATE: joi.date(),
   CUST_ID: joi.number().integer()
-  
+}).required().unknown(true);
 
-}).required();
 
 
 

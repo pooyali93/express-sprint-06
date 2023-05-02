@@ -1,6 +1,8 @@
 const model = {}; 
 
 model.table = `bookings`;
+model.mutableFields = ['VEHICLE_ID', 'EMP_ID','CUST_ID', 'DATEBOOKED'];
+model.idFields = 'BOOKING_ID';
 model.mutableFields = ['VEHICLE_ID', 'EMP_ID', 'CUST_ID', 'DATEBOOKED'];
 model.idFields = 'BOOKING_ID';
 
@@ -15,31 +17,27 @@ model.buildReadQuery = (id, variant) => {
   let sql = `SELECT ${fields} FROM ${table}`;
   let data = {};
 
+model.buildReadQuery = (id, variant) => {
+  const resolvedTable = `(((((bookings LEFT JOIN vehicles ON bookings.VEHICLE_ID = vehicles.VEHICLE_ID) 
+                          LEFT JOIN customers ON bookings.CUST_ID = customers.CUST_ID) 
+                          LEFT JOIN employees AS salesperson ON bookings.EMP_ID = salesperson.EMP_ID)
+                          LEFT JOIN users uc ON uc.USER_ID = customers.USER_ID)
+                          LEFT JOIN users ue on ue.USER_ID = salesperson.USER_ID)`;
+  let fields = [`BOOKING_ID,bookings.VEHICLE_ID, BOOKING_ID, MAKE, MODEL,VEHICLEDESC,COLOUR, MODELYEAR,PRICE, DATEBOOKED, bookings.EMP_ID AS Sales_ID, CONCAT(ue.FIRSTNAME,' ', ue.LASTNAME) AS Salesperson, bookings.CUST_ID AS Customer_ID, CONCAT(uc.FIRSTNAME,' ', uc.LASTNAME) AS Customer`]
+  let sql= '';
   switch(variant) {
-    case null:
-      // For endpoints without a variant, return the default SQL query without any WHERE clause
-      break;
-    case "BOOKING_ID":
-      // For the booking ID endpoint, add a WHERE clause to filter by booking ID
-      sql += " WHERE BOOKING_ID=:ID";
-      data = { ID: id };
-      break;
     case "EMP_ID":
-      // For the salesperson ID endpoint, add a WHERE clause to filter by salesperson ID
-      sql += " WHERE bookings.EMP_ID=:ID";
-      data = { ID: id };
+      sql += `SELECT ${fields} FROM ${resolvedTable} WHERE bookings.EMP_ID=:ID`;
       break;
     case "CUST_ID":
-      // For the customer ID endpoint, add a WHERE clause to filter by customer ID
-      sql += " WHERE bookings.CUST_ID=:ID";
-      data = { ID: id };
+      sql += `SELECT ${fields} FROM ${resolvedTable} WHERE bookings.CUST_ID=:ID`;
       break;
     default:
-      // If the variant is not recognized, return an error message
-      throw new Error(`Invalid endpoint variant: ${variant}`);
-  }
+      sql = `SELECT ${fields} FROM ${resolvedTable}`;
+      if (id) sql += ` WHERE BOOKING_ID=:ID`;
 
-  return { sql: sql, data: data };
+  }
+  return { sql, data: { ID: id } };
 };
 
 

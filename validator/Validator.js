@@ -19,7 +19,7 @@ class Validator {
   reportErrors = (error) => error.details.map((details) => details.message);
 
   validate = (schema, value) => {
-    const {error} = schema.validate(value, {abortEarl:false});
+    const {error} = schema.validate(value, {abortEarly:false});
     return error 
      ? {isValid: false, message: this.reportErrors(error) }
      : {isValid: true, message: null }
