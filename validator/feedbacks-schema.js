@@ -13,7 +13,7 @@ schema.recordSchema = joi.object({
   CUST_ID: joi.number().integer()
   
 
-}).required();
+}).required().unknown(true);
 
 
 

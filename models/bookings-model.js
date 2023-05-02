@@ -10,7 +10,7 @@ model.buildReadQuery = (id, variant) => {
                           LEFT JOIN employees AS salesperson ON bookings.EMP_ID = salesperson.EMP_ID)
                           LEFT JOIN users uc ON uc.USER_ID = customers.USER_ID)
                           LEFT JOIN users ue on ue.USER_ID = salesperson.USER_ID)`;
-  let fields = [`BOOKING_ID,bookings.VEHICLE_ID, BOOKING_ID, MAKE, MODEL,COLOUR, MODELYEAR,PRICE, DATEBOOKED, bookings.EMP_ID AS Sales_ID, CONCAT(ue.FIRSTNAME,' ', ue.LASTNAME) AS Salesperson, bookings.CUST_ID AS Customer_ID, CONCAT(uc.FIRSTNAME,' ', uc.LASTNAME) AS Customer`]
+  let fields = [`BOOKING_ID,bookings.VEHICLE_ID, BOOKING_ID, MAKE, MODEL,VEHICLEDESC,COLOUR, MODELYEAR,PRICE, DATEBOOKED, bookings.EMP_ID AS Sales_ID, CONCAT(ue.FIRSTNAME,' ', ue.LASTNAME) AS Salesperson, bookings.CUST_ID AS Customer_ID, CONCAT(uc.FIRSTNAME,' ', uc.LASTNAME) AS Customer`]
   let sql= '';
   switch(variant) {
     case "EMP_ID":

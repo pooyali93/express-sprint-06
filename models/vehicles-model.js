@@ -1,12 +1,13 @@
 const model = {}; 
 
 model.table = `vehicles`;
-model.mutableFields = ['VEHICLE_ID', 'VEHICLEURL', 'MAKE', 'MODEL', 'COLOUR', 'MODELYEAR', 'NOOFDOORS', 'PRICE', 'FUELTYPE', 'TRANSMISSION', 'ENGINESIZE', 'MILEAGE'];
+model.mutableFields = [ 'VEHICLEURL', 'MAKE', 'MODEL','VEHICLEDESC', 'COLOUR', 'MODELYEAR', 'NOOFDOORS', 'PRICE', 'FUELTYPE', 'TRANSMISSION', 'ENGINESIZE', 'MILEAGE'];
 model.idFields = 'VEHICLE_ID';
 
 model.buildReadQuery = (id) => {
   let table = 'vehicles';
-  let sql = `SELECT ${model.mutableFields} FROM ${table}`;
+  let fields = ['VEHICLE_ID', 'VEHICLEURL', 'MAKE', 'MODEL','VEHICLEDESC','COLOUR', 'MODELYEAR', 'NOOFDOORS', 'PRICE', 'FUELTYPE', 'TRANSMISSION', 'ENGINESIZE', 'MILEAGE'];
+  let sql = `SELECT ${fields} FROM ${table}`;
   if (id) sql += ` WHERE ${model.idFields}=:ID`;
   return { sql: sql, data: { ID: id } };
 };
