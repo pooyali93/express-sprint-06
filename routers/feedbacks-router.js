@@ -7,7 +7,6 @@ import Controller from "../controller/Controller.js";
 import feedbackModel from '../models/feedbacks-model.js';
 import schema from "../validator/feedbacks-schema.js";
 
-
 // Validator--------------------------------
 const validator = new Validator(schema);
 
