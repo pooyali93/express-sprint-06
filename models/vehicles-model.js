@@ -11,5 +11,4 @@ model.buildReadQuery = (id) => {
   if (id) sql += ` WHERE ${model.idFields}=:ID`;
   return { sql: sql, data: { ID: id } };
 };
-
-  export default model;
+export default model;

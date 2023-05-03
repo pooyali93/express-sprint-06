@@ -6,13 +6,7 @@ import Accessor from "../accessor/Accessor.js";
 import Controller from "../controller/Controller.js";
 import feedbackModel from '../models/feedbacks-model.js';
 import schema from "../validator/feedbacks-schema.js";
-import Model from "../models/Model.js";
-import feedbackModel from '../models/feedbacks-model.js';
-import database from "../database.js";
-import Accessor from "../accessor/Accessor.js";
-import schema from "../validator/feedbacks-schema.js";
-import Controller from "../controller/Controller.js";
-import Validator from "../validator/Validator.js";
+
 
 // Validator--------------------------------
 const validator = new Validator(schema);
